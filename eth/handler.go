@@ -858,6 +858,9 @@ func (pm *ProtocolManager) BroadcastTransactions(txs types.Transactions, propaga
 		txset = make(map[*peer][]common.Hash)
 		annos = make(map[*peer][]common.Hash)
 	)
+	for _, tx := range txs {
+		log.Info("hook", "broadcast transaction", "hash", tx.Hash, "")
+	}
 	// Broadcast transactions to a batch of peers not knowing about it
 	if propagate {
 		for _, tx := range txs {
